@@ -1,0 +1,65 @@
+models:
+  # Для CPU с малым RAM
+  - name: "TinyLLM-CPU"
+    model_id: "TinyLLM/tiny-llm-cpu"
+    description: "A minimalistic model for the CPU"
+    requirements:
+      min_ram: 4
+      requires_gpu: false
+      disk_space: 1
+    tags: ["cpu", "short-context", "basic-prompts"]
+    context_window: 1024
+    prompt_template: |
+      Improve this prompt: {instruction}
+      Requirements: short and clear
+    model_type: "gguf"
+    rank: 3
+
+  # Для GPU с 4-8 GB VRAM
+  - name: "Mistral-7B-Instruct"
+    model_id: "mistralai/Mistral-7B-Instruct-v0.2"
+    description: "The optimal choice for most tasks"
+    requirements:
+      min_ram: 12
+      requires_gpu: true
+      min_vram: 6
+      disk_space: 15
+    tags: ["mid-tier-gpu", "creative-prompts"]
+    context_window: 32768
+    prompt_template: |
+      [INST] 
+        As an expert in industrial engineering, improve this query for Stable Diffusion:
+        "{instruction}"
+        
+        Consider:
+          1. Add the details of the environment
+          2. Specify the style
+          3. Using professional terminology
+      ['/'INST]
+    model_type: "huggingface"
+    rank: 2
+
+  # Для продвинутых GPU (12+ GB VRAM)
+  - name: "Llama-3-70B-Instruct"
+    model_id: "meta-llama/Meta-Llama-3-70B-Instruct"
+    description: "An advanced model for complex tasks"
+    requirements:
+      min_ram: 32
+      requires_gpu: true
+      min_vram: 12
+      disk_space: 150
+    tags: ["high-end-gpu", "complex-prompts"]
+    context_window: 8192
+    prompt_template: |
+      <|begin_of_text|>
+      <|start_header_id|>system<|end_header_id|>
+      You are an expert in creating prompta for image generation. The user provided a basic query:
+      "{instruction}"
+            
+      Generate 3 improved versions with:
+      - Detailed description of the composition
+      - Specifying the style and color palette
+      - Technical terms from the field of photography
+      <|start_header_id|>assistant<|end_header_id|>
+    model_type: "llama"
+    rank: 1

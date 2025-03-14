@@ -1,0 +1,50 @@
+models:
+  - name: "Tiny Diffusion"
+    model_id: "parlance/diffusion_mini"
+    description: "Ultra-light CPU model"
+    requirements:
+      min_ram: 4
+      requires_gpu: false
+      disk_space: 1
+    tags: ["cpu", "low-res", "fast"]
+    image_size: [256, 256]
+    default_steps: 15
+    rank: 3
+
+  - name: "SD 1.5 Optimized"
+    model_id: "runwayml/stable-diffusion-v1-5"
+    description: "The balance of quality and speed"
+    requirements:
+      min_ram: 8
+      requires_gpu: true
+      min_vram: 4
+      disk_space: 2
+    tags: ["mid-tier-gpu", "general-use"]
+    image_size: [512, 512]
+    default_steps: 25
+    rank: 2
+
+  - name: "SDXL 1.0"
+    model_id: "stabilityai/stable-diffusion-xl-base-1.0"
+    description: "High-quality model"
+    requirements:
+      min_ram: 16
+      requires_gpu: true
+      min_vram: 8
+      disk_space: 7
+    tags: ["high-end-gpu", "high-res"]
+    image_size: [1024, 1024]
+    default_steps: 30
+    rank: 1
+
+  - name: "Mobile Diffusion"
+    model_id: "apple/mobile-diffusion-v2"
+    description: "For mobile devices"
+    requirements:
+      min_ram: 3
+      requires_gpu: false
+      disk_space: 0.5
+    tags: ["mobile", "cpu", "fast"]
+    image_size: [192, 256]
+    default_steps: 10
+    rank: 4
